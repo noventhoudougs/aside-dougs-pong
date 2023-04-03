@@ -15,8 +15,10 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@picocss/pico": "^1.5.7",
+    "@uniformdev/canvas-nuxt": "^14.2.0",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
+    "socket.io": "^4.6.1",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
