@@ -5,7 +5,9 @@
       <ul>
         <li v-for="player in players" :key="player.email">
           {{ player.firstname }} {{player.lastname}}
+          <button @click="fight()">fight</button>
         </li>
+
       </ul>
     </div>
   </main>
@@ -23,5 +25,10 @@ export default Vue.extend({
       players: [],
     }
   },
+  methods: {
+    async fight() {
+      console.log('fight');
+    }
+  }
   })
 </script>

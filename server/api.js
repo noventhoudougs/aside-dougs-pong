@@ -16,7 +16,7 @@ const pool = new Pool({
 
 api.get('/users', async (req, res) => {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM users');
+    const result = await client.query('SELECT * FROM users order by score desc');
     const results = { 'results': (result) ? result.rows : null};
     res.send(results);
     client.release();
