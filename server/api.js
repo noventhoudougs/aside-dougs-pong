@@ -24,12 +24,19 @@ api.get('/users', async (req, res) => {
 
 api.post('/users', async (req, res) => {
     const client = await pool.connect();
-    const email = req.query.email;
-    const score = Number(req.query.score);
-    const results = await client.query(`SELECT score FROM users WHERE email = '${email}'`);
-    const updatingScore = results.rows[0].score + score;
-    const result = await client.query(`UPDATE users SET score = '${updatingScore}' WHERE email = '${email}'`);
-    res.send(result);
+    const email1 = req.query.email1;
+    const email2 = req.query.email2;
+
+    const result1 = await client.query(`SELECT score FROM users WHERE email = '${email1}'`);
+    const result2 = await client.query(`SELECT score FROM users WHERE email = '${email2}'`);
+
+    const updatingWinningScore = result1.rows[0].score + 10;
+    const updatingLosingScore = result2.rows[0].score - 20;
+
+    const resultWinning = await client.query(`UPDATE users SET score = '${updatingWinningScore}' WHERE email = '${email1}'`);
+    const resultLosing = await client.query(`UPDATE users SET score = '${updatingLosingScore}' WHERE email = '${email2}'`);
+
+    res.send({resultWinning, resultLosing});
     client.release();
 });
 
