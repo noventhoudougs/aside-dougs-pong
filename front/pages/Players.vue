@@ -5,7 +5,7 @@
       <ul>
         <li v-for="player in players" :key="player.email">
           {{ player.firstname }} {{player.lastname}}
-          <button @click="fight()">fight</button>
+          <button @click="challengePlayer(player)">Défier</button>
         </li>
 
       </ul>
@@ -23,12 +23,19 @@ export default Vue.extend({
   data() {
     return {
       players: [],
+      loggedInUser: 'savinien.richter@dougs.fr'
     }
   },
   methods: {
-    async fight() {
-      console.log('fight');
-    }
+    async challengePlayer(player: any) {
+      const currentUser = this.loggedInUser;// récupérer le joueur connecté, par exemple depuis le store Vuex
+      const response = await this.$axios.post('/newGame', {
+        challenger: this.loggedInUser,
+        challenged: player.email,
+      });
+      const gameId = response.data.id
+      this.$router.push({path: `/game`})
+    },
   }
-  })
+})
 </script>
