@@ -25,8 +25,12 @@ export default Vue.extend({
   methods: {
     loginClick() {
       if (this.email && this.password) {
-        this.$axios.$post('/login', {email: this.email, password: this.password})
+        this.$axios.$post('/login', {email: this.email, password: this.password});
+        this.redirectTo('/players');
       }
+    },
+    redirectTo(url: string) {
+      this.$router.push(url)
     }
   },
   data: () => ({
@@ -37,7 +41,9 @@ export default Vue.extend({
 </script>
 <style>
 main.container {
-  max-width: 800px;
+  border-radius: 8px;
+  margin-top: 100px;
+  max-width: 500px;
   border: 1px solid #39346A;
 }
 
@@ -55,7 +61,7 @@ li {
 
 img {
   display: block;
-  width: 20%;
+  width: 100px;
   margin-left: auto;
   margin-right: auto;
 }
