@@ -30,6 +30,16 @@ api.post('/users', async (req, res) => {
     client.release();
 });
 
+api.post('/login', async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    if (email && password) {
+        res.send();
+    } else {
+        res.status(403);
+    }
+});
+
 api.use(express.static(path.join(__dirname, 'public')));
 
 api.use('/', (req, res) => {
