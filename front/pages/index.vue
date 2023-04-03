@@ -19,7 +19,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-// import { router } from '@/router'
 
 export default Vue.extend({
   name: 'IndexPage',
@@ -31,8 +30,8 @@ export default Vue.extend({
       }
     },
     redirectTo(url: string) {
-    this.$router.push(url)
-  }
+      this.$router.push(url)
+    }
   },
   data: () => ({
     email: '',
@@ -42,7 +41,9 @@ export default Vue.extend({
 </script>
 <style>
 main.container {
-  max-width: 800px;
+  border-radius: 8px;
+  margin-top: 100px;
+  max-width: 500px;
   border: 1px solid #39346A;
 }
 
@@ -60,7 +61,7 @@ li {
 
 img {
   display: block;
-  width: 20%;
+  width: 100px;
   margin-left: auto;
   margin-right: auto;
 }
