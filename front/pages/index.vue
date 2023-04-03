@@ -45,16 +45,18 @@ article {
   background-color: #1e1b38;
 }
 
-label {
-  color: white;
-}
-
 input {
   color: white;
 }
 
-button {
-  background-color: #FC228F;
-  border-color: #FC228F;
+li {
+  color: white;
+}
+
+img {
+  display: block;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
