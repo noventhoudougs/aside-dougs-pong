@@ -19,15 +19,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// import { router } from '@/router'
 
 export default Vue.extend({
   name: 'IndexPage',
   methods: {
     loginClick() {
       if (this.email && this.password) {
-        this.$axios.$post('/login', {email: this.email, password: this.password})
+        this.$axios.$post('/login', {email: this.email, password: this.password});
+        this.redirectTo('/players');
       }
-    }
+    },
+    redirectTo(url: string) {
+    this.$router.push(url)
+  }
   },
   data: () => ({
     email: '',
