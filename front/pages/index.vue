@@ -1,10 +1,16 @@
 <template>
   <main class="container">
     <article>
-      <h1>Welcome to dougs pong</h1>
+      <img src="~/assets/frame 1.svg" alt="">
       <form>
-        <input type="text" placeholder="email" id="email" v-model="email" required>
-        <input type="password" placeholder="password" id="password" v-model="password" required>
+        <label>
+          Identifiant
+          <input type="text" placeholder="email" id="email" v-model="email" required>
+        </label>
+        <label>
+          Mot de passe
+          <input type="password" placeholder="password" id="password" v-model="password" required>
+        </label>
         <button type="button" @click="loginClick">Login</button>
       </form>
     </article>
@@ -29,3 +35,26 @@ export default Vue.extend({
   })
 })
 </script>
+<style>
+main.container {
+  max-width: 800px;
+  border: 1px solid #39346A;
+}
+
+article {
+  background-color: #1e1b38;
+}
+
+label {
+  color: white;
+}
+
+input {
+  color: white;
+}
+
+button {
+  background-color: #FC228F;
+  border-color: #FC228F;
+}
+</style>
