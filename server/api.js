@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors')
+const cors = require('cors');
 const { Pool } = require('pg');
+const httpServer = require('./server');
+const io = require('socket.io')(httpServer);
 
 const api = express();
 api.use(cors());
-api.use(express.json())
+api.use(express.json());
 const pool = new Pool({
     user: 'dougs',
     host: 'localhost',
@@ -49,6 +51,46 @@ api.post('/login', async (req, res) => {
     } else {
         res.status(403);
     }
+});
+api.get('/newGame', (req, res) => {
+    const namespaceId = Math.random().toString(36).substring(7);
+    console.log(namespaceId);
+    const pongNamespace = io.of(`/${namespaceId}`);
+
+    pongNamespace.on('connection', (socket) => {
+        let room;
+        let readyPlayerCount = 0;
+
+        console.log('a user connected', socket.id);
+
+        // Événement 'ready' : lorsque le joueur est prêt à jouer
+        socket.on('ready', () => {
+            room = 'room' + Math.floor(readyPlayerCount / 2);
+            socket.join(room);
+
+            console.log('Player ready', socket.id, room);
+
+            readyPlayerCount++;
+
+            if (readyPlayerCount % 2 === 0) {
+                pongNamespace.in(room).emit('startGame', socket.id);
+            }
+        });
+
+        socket.on('paddleMove', (paddleData) => {
+            socket.to(room).emit('paddleMove', paddleData);
+        });
+
+        socket.on('ballMove', (ballData) => {
+            socket.to(room).emit('ballMove', ballData);
+        });
+
+        socket.on('disconnect', (reason) => {
+            console.log(`Client ${socket.id} disconnected: ${reason}`);
+            socket.leave(room);
+        });
+    });
+    res.send(namespaceId);
 });
 
 api.use(express.static(path.join(__dirname, 'public')));

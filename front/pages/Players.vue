@@ -27,14 +27,11 @@ export default Vue.extend({
     }
   },
   methods: {
-    async challengePlayer(player: any) {
-      const currentUser = this.loggedInUser;// récupérer le joueur connecté, par exemple depuis le store Vuex
-      const response = await this.$axios.post('/newGame', {
-        challenger: this.loggedInUser,
-        challenged: player.email,
-      });
-      const gameId = response.data.id
-      this.$router.push({path: `/game`})
+    async challengePlayer() {
+      const response = await this.$axios.get('/newGame');
+      console.log(response.data)
+      // await this.$axios.get(`/${response.data}`)
+      await this.$router.push(`/pong`)
     },
   }
 })
