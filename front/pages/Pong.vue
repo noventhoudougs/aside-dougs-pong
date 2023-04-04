@@ -1,8 +1,8 @@
 <template>
-  <main class="container">
-    <article>
-      PONG
-    </article>
+  <main class="container game">
+    <img src="~/assets/frame 1.svg" alt="">
+    <h1>You're gonna fight !</h1>
+    <h5>For your right to paaaaarty ! 3 points gagnants</h5>
   </main>
 </template>
 <script lang="ts">
@@ -19,7 +19,7 @@ export default Vue.extend({
     // Canvas Related
 
     const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext('2d') as CanvasRenderingContext2D;
     const socket = io('http://192.168.1.32:8000/pong');
     let isReferee = false;
     let paddleIndex = 0;
@@ -52,7 +52,8 @@ export default Vue.extend({
       canvas.id = 'canvas';
       canvas.width = width;
       canvas.height = height;
-      document.body.appendChild(canvas);
+      const main = document.getElementsByTagName('main')[0];
+      main.appendChild(canvas);
       renderCanvas();
     }
 
@@ -93,14 +94,14 @@ export default Vue.extend({
 
       // Ball
       context.beginPath();
-      context.arc(ballX, ballY, ballRadius, 2 * Math.PI, false);
+      context.arc(ballX, ballY, ballRadius, 2 * Math.PI, Number(false));
       context.fillStyle = 'white';
       context.fill();
 
       // Score
       context.font = "32px Courier New";
-      context.fillText(score[0], 20, (canvas.height / 2) + 50);
-      context.fillText(score[1], 20, (canvas.height / 2) - 30);
+      context.fillText(''+score[0], 20, (canvas.height / 2) + 50);
+      context.fillText(''+score[1], 20, (canvas.height / 2) - 30);
     }
 
     // Reset Ball to Center
@@ -245,3 +246,42 @@ export default Vue.extend({
   }
 })
 </script>
+<style>
+main.container.game {
+  margin-top: 25px;
+  max-width: 500px;
+}
+
+h1, h5 {
+  color: white;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+article {
+  border-radius: 8px;
+  background-color: #131128;
+  padding: 20px;
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+img {
+  display: block;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+</style>

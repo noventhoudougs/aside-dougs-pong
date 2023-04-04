@@ -46,7 +46,7 @@ export default Vue.extend({
 </script>
 <style>
 main.container.players {
-  margin-top: 100px;
+  margin-top: 25px;
   max-width: 500px;
 }
 
@@ -64,7 +64,7 @@ h1 {
 h5 {
   font-size: 16px;
   font-weight: normal;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 article {
@@ -80,7 +80,7 @@ img {
   width: 150px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 ul {
