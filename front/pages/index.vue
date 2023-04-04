@@ -1,5 +1,5 @@
 <template>
-  <main class="container">
+  <main class="container login">
     <article>
       <img src="~/assets/frame 1.svg" alt="">
       <form>
@@ -11,7 +11,7 @@
           Mot de passe
           <input type="password" placeholder="password" id="password" v-model="password" required>
         </label>
-        <button type="button" @click="loginClick">Login</button>
+        <button class="login" type="button" @click="loginClick">Login</button>
       </form>
     </article>
   </main>
@@ -40,15 +40,15 @@ export default Vue.extend({
 })
 </script>
 <style>
-main.container {
+main.container.login {
   border-radius: 8px;
   margin-top: 100px;
   max-width: 500px;
-  border: 1px solid #39346A;
+  background-color: #131128;
 }
 
 article {
-  background-color: #1e1b38;
+  background-color: #131128;
 }
 
 input {
@@ -57,6 +57,11 @@ input {
 
 li {
   color: white;
+}
+
+button.login {
+  background-color: #FC228F;
+  border-color: #FC228F;
 }
 
 img {
