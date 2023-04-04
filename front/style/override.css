@@ -1,11 +1,17 @@
 [data-theme="light"] {
+  background-image: url('../assets/bg-game.png');
+  background-repeat: repeat;
   background-color: #1e1b38;
   color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+h1 {
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 button {
-  background-color: #FC228F;
-  border-color: #FC228F;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 label {
