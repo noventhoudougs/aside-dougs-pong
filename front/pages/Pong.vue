@@ -11,6 +11,9 @@ import io from 'socket.io-client'
 
 export default Vue.extend({
   name: 'PongPage',
+  props: {
+    socketId: {type: String, required: true}
+  },
   mounted() {
 
     // Canvas Related

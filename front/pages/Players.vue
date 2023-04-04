@@ -35,8 +35,11 @@ export default Vue.extend({
     async challengePlayer() {
       const response = await this.$axios.get('/newGame');
       console.log(response.data)
-      // await this.$axios.get(`/${response.data}`)
-      await this.$router.push(`/pong`)
+      await this.$router.push({
+        path: '/pong',
+
+        params: {socketId: response.data}
+      });
     },
   }
   })
